@@ -103,11 +103,7 @@ In this example, there are 9 tiles and a set of 5 sample maps with 10 rows and 1
 
 #### Sample Maps
 
-<img src="images/1 Knots 0.png"/>
-<img src="images/1 Knots 1.png"/>
-<img src="images/1 Knots 2.png"/>
-<img src="images/1 Knots 3.png"/>
-<img src="images/1 Knots 4.png"/>
+<img src="images/allMaps.png"/>
 
 #### Generated Maps
 
