@@ -1,4 +1,4 @@
-# Quantum Tilemap Genration
+# Quantum Tilemap Generation
 
 This Project generates tilemaps using quantum computing. It uses a set of sample tiles and tilemaps and generates new tilemaps that are similar. The generation algorithm is based on the Wavefunction Collapse Algorithm.
 
@@ -99,6 +99,17 @@ In this example, there are 9 tiles and a set of 5 sample maps with 10 rows and 1
 
 #### Tiles
 
+<img src="images/allTiles.png"/>
+
 #### Sample Maps
 
+<img src="images/1 Knots 0.png"/>
+<img src="images/1 Knots 1.png"/>
+<img src="images/1 Knots 2.png"/>
+<img src="images/1 Knots 3.png"/>
+<img src="images/1 Knots 4.png"/>
+
 #### Generated Maps
+
+<img src="images/output 1.png"/>
+<img src="images/output 2.png"/>
