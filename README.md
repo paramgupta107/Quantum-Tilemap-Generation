@@ -17,47 +17,48 @@ Let **numRows** be the number of rows in a tilemap.
 
 Let **numColumns** be the number of columns in a tilemap.
 
+
 Let,
 
-$$M_{r,c,t}^{i} \in \{0,1\}$$
+<img src="https://i.upmath.me/svg/M_%7Br%2Cc%2Ct%7D%5E%7Bi%7D%20%5Cin%20%5C%7B0%2C1%5C%7D" alt="M_{r,c,t}^{i} \in \{0,1\}" />
 
 Where,
 
 the value is 1 if tile **t** is present at row **r** and column **c** in sample map **i**.
 
-$$AllowedTop = \{(t_{1},t_{2}) | M_{r,c,t_{1}}^{i}=1, M_{r-1,c,t_{2}}^{i}=0 \newline \forall 0 \leq i \leq  numMaps,
+<img src="https://i.upmath.me/svg/AllowedTop%20%3D%20%5C%7B(t_%7B1%7D%2Ct_%7B2%7D)%20%7C%20M_%7Br%2Cc%2Ct_%7B1%7D%7D%5E%7Bi%7D%3D1%2C%20M_%7Br-1%2Cc%2Ct_%7B2%7D%7D%5E%7Bi%7D%3D0%20%5Cnewline%20%5Cforall%200%20%5Cleq%20i%20%5Cleq%20%20numMaps%2C%0A1%20%5Cleq%20r%20%5Cleq%20%20numRows%2C%0A0%20%5Cleq%20c%20%5Cleq%20%20numColumns%2C%0A0%20%5Cleq%20t%20%5Cleq%20%20numTiles%5C%7D" alt="AllowedTop = \{(t_{1},t_{2}) | M_{r,c,t_{1}}^{i}=1, M_{r-1,c,t_{2}}^{i}=0 \newline \forall 0 \leq i \leq  numMaps,
 1 \leq r \leq  numRows,
 0 \leq c \leq  numColumns,
-0 \leq t \leq  numTiles\}$$
+0 \leq t \leq  numTiles\}" />
 
 **AllowedTop** is the set of all pairs of tiles where 2nd tile is allowed to be on top of the first tile
 
-$$AllowedLeft = \{(t_{1},t_{2}) | M_{r,c,t_{1}}^{i}=1, M_{r,c-1,t_{2}}^{i}=0\newline \forall 0 \leq i \leq  numMaps,
+<img src="https://i.upmath.me/svg/AllowedLeft%20%3D%20%5C%7B(t_%7B1%7D%2Ct_%7B2%7D)%20%7C%20M_%7Br%2Cc%2Ct_%7B1%7D%7D%5E%7Bi%7D%3D1%2C%20M_%7Br%2Cc-1%2Ct_%7B2%7D%7D%5E%7Bi%7D%3D0%5Cnewline%20%5Cforall%200%20%5Cleq%20i%20%5Cleq%20%20numMaps%2C%0A0%20%5Cleq%20r%20%5Cleq%20%20numRows%2C%0A1%20%5Cleq%20c%20%5Cleq%20%20numColumns%2C%0A0%20%5Cleq%20t%20%5Cleq%20%20numTiles%5C%7D" alt="AllowedLeft = \{(t_{1},t_{2}) | M_{r,c,t_{1}}^{i}=1, M_{r,c-1,t_{2}}^{i}=0\newline \forall 0 \leq i \leq  numMaps,
 0 \leq r \leq  numRows,
 1 \leq c \leq  numColumns,
-0 \leq t \leq  numTiles\}$$
+0 \leq t \leq  numTiles\}" />
 
 **AllowedLeft** is the set of all pairs of tiles where 2nd tile is allowed to be on the left of the first tile
 
-$$AllCombinations = \{(t_{1},t_{2})|0\leq t_{1}\leq numTiles,0\leq t_{2}\leq numTiles\}$$
+<img src="https://i.upmath.me/svg/AllCombinations%20%3D%20%5C%7B(t_%7B1%7D%2Ct_%7B2%7D)%7C0%5Cleq%20t_%7B1%7D%5Cleq%20numTiles%2C0%5Cleq%20t_%7B2%7D%5Cleq%20numTiles%5C%7D" alt="AllCombinations = \{(t_{1},t_{2})|0\leq t_{1}\leq numTiles,0\leq t_{2}\leq numTiles\}" />
 
 **AllCombinations** is the set of all possible pairs of tiles.
 
-$$NotAllowedTop = AllCombinations-AllowedTop$$
+<img src="https://i.upmath.me/svg/NotAllowedTop%20%3D%20AllCombinations-AllowedTop" alt="NotAllowedTop = AllCombinations-AllowedTop" />
 
 **NotAllowedTop** is the set of all pairs of tiles where 2nd tile is not allowed to be on top of the first tile.
 
-$$NotAllowedLeft = AllCombinations-AllowedLeft$$
+<img src="https://i.upmath.me/svg/NotAllowedLeft%20%3D%20AllCombinations-AllowedLeft" alt="NotAllowedLeft = AllCombinations-AllowedLeft" />
 
 **NotAllowedLeft** is the set of all pairs of tiles where 2nd tile is not allowed to be on the left of the first tile.
 
-$$countPerTile = \left \lfloor \frac{numColumns*numRows}{numTiles}\right \rceil$$
+<img src="https://i.upmath.me/svg/countPerTile%20%3D%20%5Cleft%20%5Clfloor%20%5Cfrac%7BnumColumns*numRows%7D%7BnumTiles%7D%5Cright%20%5Crceil" alt="countPerTile = \left \lfloor \frac{numColumns*numRows}{numTiles}\right \rceil" />
 
 **countPerTile** is the desired count of each tile in our generated tilemap.
 
 The Objective Function can then be defined as:-
 
-$$E(M) = \alpha \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=1}^{numRows-1}\sum \{(M_{r,c,t_{1}}+M_{r-1,c,t_{2}}-1)^{2}|\forall (t_{1},t_{2}) \in NotAllowedTop\}\bigg)
+<img src="https://i.upmath.me/svg/E(M)%20%3D%20%5Calpha%20%5Cbigg(%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D1%7D%5E%7BnumRows-1%7D%5Csum%20%5C%7B(M_%7Br%2Cc%2Ct_%7B1%7D%7D%2BM_%7Br-1%2Cc%2Ct_%7B2%7D%7D-1)%5E%7B2%7D%7C%5Cforall%20(t_%7B1%7D%2Ct_%7B2%7D)%20%5Cin%20NotAllowedTop%5C%7D%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cbeta%20%5Cbigg(%5Csum_%7Bc%3D1%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D%5Csum%20%5C%7B(M_%7Br%2Cc%2Ct_%7B1%7D%7D%2BM_%7Br%2Cc-1%2Ct_%7B2%7D%7D-1)%5E%7B2%7D%7C%5Cforall%20(t_%7B1%7D%2Ct_%7B2%7D)%20%5Cin%20NotAllowedLeft%5C%7D%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cdelta%20%5Cbigg(%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D(1-%5Csum_%7Bt%3D0%7D%5E%7BnumTiles-1%7D%20M_%7Br%2Cc%2Ct%7D)%5E%7B2%7D%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cepsilon%20%5Cbigg(%5Csum_%7Bt%3D0%7D%5E%7BnumTiles-1%7D%20%5Cbig%20(countPerTile%20-%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D%20M_%7Br%2Cc%2Ct%7D)%5E%7B2%7D%5Cbigg)" alt="E(M) = \alpha \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=1}^{numRows-1}\sum \{(M_{r,c,t_{1}}+M_{r-1,c,t_{2}}-1)^{2}|\forall (t_{1},t_{2}) \in NotAllowedTop\}\bigg)
 \newline
 +
 \beta \bigg(\sum_{c=1}^{numColumns-1}\sum_{r=0}^{numRows-1}\sum \{(M_{r,c,t_{1}}+M_{r,c-1,t_{2}}-1)^{2}|\forall (t_{1},t_{2}) \in NotAllowedLeft\}\bigg)
@@ -66,31 +67,31 @@ $$E(M) = \alpha \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=1}^{numRows-1}\sum \{(M_{
 \delta \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1}(1-\sum_{t=0}^{numTiles-1} M_{r,c,t})^{2}\bigg)
 \newline
 +
-\epsilon \bigg(\sum_{t=0}^{numTiles-1} \big (countPerTile -\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1} M_{r,c,t})^{2}\bigg)$$
+\epsilon \bigg(\sum_{t=0}^{numTiles-1} \big (countPerTile -\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1} M_{r,c,t})^{2}\bigg)" />
 
 To represent the Objective Function as QUBO, it needs to be simplified.
 
 We know that,
 
-$$(M_{r,c,t})^{2} = M_{r,c,t}
-\because M_{r,c,t} \in \{0,1\} \newline$$
+<img src="https://i.upmath.me/svg/(M_%7Br%2Cc%2Ct%7D)%5E%7B2%7D%20%3D%20M_%7Br%2Cc%2Ct%7D%0A%5Cbecause%20M_%7Br%2Cc%2Ct%7D%20%5Cin%20%5C%7B0%2C1%5C%7D%20%5Cnewline" alt="(M_{r,c,t})^{2} = M_{r,c,t}
+\because M_{r,c,t} \in \{0,1\} \newline" />
 
 So, the Objective Function can be simplified as:-
 
-$$E(M) = \alpha \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=1}^{numRows-1}\sum \{(1+2M_{r,c,t_{1}}M_{r-1,c,t_{2}}-M_{r,c,t_{1}}-M_{r-1,c,t_{2}})|\forall (t_{1},t_{2}) \in NotAllowedTop\} \bigg)
+<img src="https://i.upmath.me/svg/E(M)%20%3D%20%5Calpha%20%5Cbigg(%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D1%7D%5E%7BnumRows-1%7D%5Csum%20%5C%7B(1%2B2M_%7Br%2Cc%2Ct_%7B1%7D%7DM_%7Br-1%2Cc%2Ct_%7B2%7D%7D-M_%7Br%2Cc%2Ct_%7B1%7D%7D-M_%7Br-1%2Cc%2Ct_%7B2%7D%7D)%7C%5Cforall%20(t_%7B1%7D%2Ct_%7B2%7D)%20%5Cin%20NotAllowedTop%5C%7D%20%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cbeta%20%5Cbigg(%5Csum_%7Bc%3D1%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D%5Csum%20%5C%7B(1%2B2M_%7Br%2Cc%2Ct_%7B1%7D%7DM_%7Br%2Cc-1%2Ct_%7B2%7D%7D-M_%7Br%2Cc%2Ct_%7B1%7D%7D-M_%7Br%2Cc-1%2Ct_%7B2%7D%7D)%7C%5Cforall%20(t_%7B1%7D%2Ct_%7B2%7D)%20%5Cin%20NotAllowedLeft%5C%7D%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cgamma%20%5Cbigg(%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D(1-%5Csum_%7Bt%3D0%7D%5E%7BnumTiles-1%7D%20M_%7Br%2Cc%2Ct%7D%20%2B%20%5Csum_%7Bt_%7B1%7D%3D0%7D%5E%7BnumTiles-1%7D%20%5Csum_%7Bt_%7B2%7D%3Et_%7B1%7D%7D%5E%7B%7D%202M_%7Br%2Cc%2Ct_%7B1%7D%7DM_%7Br-1%2Cc%2Ct_%7B2%7D%7D)%5Cbigg)%0A%5Cnewline%0A%2B%0A%5Cepsilon%20%5Cbigg(%5Csum_%7Bt%3D0%7D%5E%7BnumTiles-1%7D%20%5Cbig%20(countPerTile%5E%7B2%7D%20%2B%20(-2a%2B1)countPerTile%5Csum_%7Bc%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br%3D0%7D%5E%7BnumRows-1%7D%20M_%7Br%2Cc%2Ct%7D%0A%5Cnewline%0A%2B%0A%5Csum_%7Bc_%7B1%7D%3D0%7D%5E%7BnumColumns-1%7D%5Csum_%7Br_%7B1%7D%3D0%7D%5E%7BnumRows-1%7D%20%5Csum_%7Bc_%7B2%7D%3Ec_%7B1%7D%7D%5E%7B%7D%20%5Csum_%7Br_%7B2%7D%3Er_%7B1%7D%7D%5E%7B%7D%202M_%7Br_%7B1%7D%2Cc_%7B1%7D%2Ct%7DM_%7Br_%7B2%7D%2Cc_%7B2%7D%2Ct%7D%0A)%5Cbigg)" alt="E(M) = \alpha \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=1}^{numRows-1}\sum \{(1+2M_{r,c,t_{1}}M_{r-1,c,t_{2}}-M_{r,c,t_{1}}-M_{r-1,c,t_{2}})|\forall (t_{1},t_{2}) \in NotAllowedTop\} \bigg)
 \newline
 +
 \beta \bigg(\sum_{c=1}^{numColumns-1}\sum_{r=0}^{numRows-1}\sum \{(1+2M_{r,c,t_{1}}M_{r,c-1,t_{2}}-M_{r,c,t_{1}}-M_{r,c-1,t_{2}})|\forall (t_{1},t_{2}) \in NotAllowedLeft\}\bigg)
 \newline
 +
-\gamma \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1}(1-\sum_{t=0}^{numTiles-1} M_{r,c,t} + \sum_{t_{1}=0}^{numTiles-1} \sum_{t_{2}>t_{1}}^{} 2M_{r,c,t_{1}}M_{r-1,c,t_{2}})\bigg)
+\gamma \bigg(\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1}(1-\sum_{t=0}^{numTiles-1} M_{r,c,t} + \sum_{t_{1}=0}^{numTiles-1} \sum_{t_{2}&gt;t_{1}}^{} 2M_{r,c,t_{1}}M_{r-1,c,t_{2}})\bigg)
 \newline
 +
 \epsilon \bigg(\sum_{t=0}^{numTiles-1} \big (countPerTile^{2} + (-2a+1)countPerTile\sum_{c=0}^{numColumns-1}\sum_{r=0}^{numRows-1} M_{r,c,t}
 \newline
 +
-\sum_{c_{1}=0}^{numColumns-1}\sum_{r_{1}=0}^{numRows-1} \sum_{c_{2}>c_{1}}^{} \sum_{r_{2}>r_{1}}^{} 2M_{r_{1},c_{1},t}M_{r_{2},c_{2},t}
-)\bigg)$$
+\sum_{c_{1}=0}^{numColumns-1}\sum_{r_{1}=0}^{numRows-1} \sum_{c_{2}&gt;c_{1}}^{} \sum_{r_{2}&gt;r_{1}}^{} 2M_{r_{1},c_{1},t}M_{r_{2},c_{2},t}
+)\bigg)" />
 
 ## Results
 
